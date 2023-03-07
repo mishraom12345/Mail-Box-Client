@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { sentboxAction } from '../../store/Sentboxslice'
-import { useSelector } from 'react-redux'
+import React from 'react'
+import { useState } from 'react'
+import { inboxAction } from '../../store/InboxSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-function Sentbox() {
-    const emaildata = useSelector(state=>state.sent.sentbox)
+function Inbox() {
     const dispatch = useDispatch()
-  
-       const submitHandler = ()=>{
-        fetch(`https://mail-box-client-82bc8-default-rtdb.firebaseio.com/Email/${localStorage.getItem('email')}/sent.json`).then((res)=>{
+    const inboxdata = useSelector(state=>state.in.inbox)
+    console.log(inboxdata)
+    
+    const submitHandler = ()=>{
+        fetch(`https://mail-box-client-82bc8-default-rtdb.firebaseio.com/Email/${localStorage.getItem('email')}/Recieve.json`).then((res)=>{
             if(res.ok){
                 return res.json()
             }else{
@@ -35,7 +38,7 @@ function Sentbox() {
             
             //console.log(data)
             console.log(myarr)
-            dispatch(sentboxAction.setsenbox(myarr))
+            dispatch(inboxAction.setinbox(myarr))
     
             
         }).catch((err)=>{
@@ -57,11 +60,12 @@ function Sentbox() {
    
     
       <div>
+        <Button variant='outline-info'><Link to ='/welcome'>Compose email</Link></Button>
          
-    {emaildata.map((item,index)=>(
+    {inboxdata.map((item,index)=>(
         <div key={index} style={{backgroundColor:'yellow' ,margin:'3%'}}>
             <p>
-            𝐓𝐨:{item.email}{'   '}
+            From:{item.email}
             𝖘𝖚𝖇𝖏𝖊𝖈𝖙:{item.subject}{'   '}
                 𝖒𝖊𝖘𝖘𝖆𝖌𝖊:{item.message}{'    '}
 
@@ -76,4 +80,6 @@ function Sentbox() {
   )
 }
 
-export default Sentbox
+export default Inbox
+  
+ 

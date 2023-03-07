@@ -14,6 +14,12 @@ const authslice = createSlice({
             localStorage.setItem('idToken',action.payload)
             state.isLogin = true
             state.idToken = action.payload
+        },
+
+        Logout(state){
+            state.isLogin = false
+            localStorage.removeItem('email')
+            localStorage.removeItem('idToken')
         }
     }
 

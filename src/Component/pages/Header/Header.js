@@ -1,10 +1,13 @@
 import React from 'react'
+import { Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function Header() {
   return (
     <div>
-      <Link to = 'sentbox'>sentbox</Link>
+     <Nav>
+        <Link>sentbox</Link>
+     </Nav>
     </div>
   )
 }
