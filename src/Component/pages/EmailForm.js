@@ -1,16 +1,22 @@
 import React, { useRef, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 
 function EmailForm() {
+  
   const emailinputref = useRef()
   const messageinputref = useRef()
   const subjectinputref = useRef()
+  const history = useNavigate()
+  
   const handleSubmit = (event) => {
  
     event.preventDefault();
+   
    const enteredemail = emailinputref.current.value
    const enteredmessage = messageinputref.current.value
    const entersubject = subjectinputref.current.value
@@ -31,6 +37,7 @@ function EmailForm() {
       }
   }).then((res)=>{
     if(res.ok){
+       history('/sentbox')
         return res.json()
     }else{
         res.json().then((data)=>{
@@ -41,6 +48,7 @@ function EmailForm() {
                throw new Error(errormessage)
             }
         }).then((data)=>{
+          
             
 
         }).catch((error)=>{
