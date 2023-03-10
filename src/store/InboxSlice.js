@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    inbox:[]
+    inbox:[],
+    isRead:true
 }
 
 const inboxslice = createSlice({
@@ -10,7 +11,10 @@ const inboxslice = createSlice({
     reducers:{
         setinbox(state,action){
             state.inbox = action.payload
-        }
+        },
+        setisread(state,action){
+            state.isRead = action.payload
+         }
     }
 
 

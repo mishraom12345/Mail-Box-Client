@@ -7,6 +7,7 @@ import Welcome from './Component/pages/Welcome';
 //import Header from './Component/Header/Header';
 import Sentbox from './Component/pages/Sentbox';
 import Inbox from './Component/pages/Inbox';
+import InboxDeatil from './Component/pages/InboxDeatil';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path = '/welcome' element = {<Welcome/>}/>
       <Route path='/sentbox' element = {<Sentbox/>} />
       <Route path = '/inbox' element = {<Inbox/>}/>
+      <Route path = '/inbox/:id' element = {<InboxDeatil/>}/>
       
      </Routes>
     </div>

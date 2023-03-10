@@ -23,7 +23,7 @@ function EmailForm() {
    const replacedmail = enteredemail.replace('@','').replace('.','')
    localStorage.setItem('replacedmail',replacedmail)
 
-   const emaildata = {email: enteredemail, message:enteredmessage, subject:entersubject}
+   const emaildata = {email: localStorage.getItem('hari'), message:enteredmessage, subject:entersubject,show:true}
 
 
 
@@ -86,6 +86,7 @@ function EmailForm() {
 
 
   
+
   
    
   };
