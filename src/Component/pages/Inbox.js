@@ -18,6 +18,7 @@ function Inbox() {
 
         
 
+       const interval = setInterval(()=>{
         fetch(`https://mail-box-client-82bc8-default-rtdb.firebaseio.com/Email/${localStorage.getItem('email')}/Recieve.json`).then((res)=>{
             if(res.ok){
                 return res.json()
@@ -53,9 +54,13 @@ function Inbox() {
 
        
 
+       },1500)
 
-         
+        return ()=>clearInterval(interval)
        }
+
+    
+      
 
        useEffect(()=>{
         submitHandler()
@@ -65,10 +70,11 @@ function Inbox() {
     const handleclick = (id)=>{
         dispatch(inboxAction.setisread(id))
         console.log('clicked')
+        
     }
 
     const deleteHandler = (id)=>{
-        fetch(`https://mail-box-client-82bc8-default-rtdb.firebaseio.com/Email/${localStorage.getItem('email')}/Recieve.json`,{
+        fetch(`https://mail-box-client-82bc8-default-rtdb.firebaseio.com/Email/${localStorage.getItem('email')}/Recieve/${id}.json`,{
           method:"DELETE",
           
           headers:{
@@ -103,7 +109,7 @@ function Inbox() {
    
     
       <div>
-        
+        <h2>inbox</h2>
   <Button variant='outline-info'><Link to ='/welcome'>Compose email</Link></Button>
         
   <div>
